@@ -1,11 +1,20 @@
+import * as Raven from 'raven-js';
 import { applyMiddleware, createStore } from 'redux';
-import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
-import rootReducer from '../reducer/index';
+import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../action/SearchAction';
+import rootReducer from '../reducer/index';
 
+Raven
+  .config(`https://${process.env.REACT_APP_SENTRY_TRACKER_KEY}@sentry.io/1243344`)
+  .install();
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware({
+    onError: (error) => {
+        console.log('SagaError', error);
+        Raven.captureException(error);
+    }
+});
 const middlewares = [logger, sagaMiddleware];
 
 const configureStore = (initialState = {}) => {

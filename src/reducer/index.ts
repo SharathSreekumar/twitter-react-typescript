@@ -7,7 +7,7 @@ const appReducer = combineReducers({
     searchReducer
 });
 
-const rootReducer = (state:any, action:object) => {
+const rootReducer = (state:any, action:any) => {
     return appReducer(state, action);
 }
 

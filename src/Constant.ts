@@ -7,6 +7,11 @@ const ISO2_KEY = `country2_code`;
 const ISO3_KEY = `country3_code`;
 const LIST_SEARCH_KEY = `country_name`;
 const SEARCH_QUERY_PARAM_KEY = `query`;
+// const TWITTER_SEARCH_API_URL = `https://api.twitter.com/1.1/search/tweets.json?q=search_query&result_type=search_result_type`;
+const TWITTER_SEARCH_API_URL = `https://api.twitter.com/1.1/search/tweets.json`;
+const TWITTER_SEARCH_QUERY_KEY = `q`;// `search_query`;
+const TWITTER_SEARCH_RESULT_TYPE_KEY = `result_type`; // `search_result_type`;
+const TWITTER_API_ACCESS_TOKEN_URL = `https://api.twitter.com/oauth/access_token`;
 
 export {
     port,
@@ -18,4 +23,8 @@ export {
     ISO3_KEY,
     LIST_SEARCH_KEY,
     SEARCH_QUERY_PARAM_KEY,
+    TWITTER_API_ACCESS_TOKEN_URL,
+    TWITTER_SEARCH_API_URL,
+    TWITTER_SEARCH_QUERY_KEY,
+    TWITTER_SEARCH_RESULT_TYPE_KEY,
 }

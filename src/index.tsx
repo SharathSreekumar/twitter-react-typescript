@@ -1,8 +1,8 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Root from './container/Root';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/store';
 
 const store = configureStore();
@@ -10,8 +10,10 @@ const store = configureStore();
 /* store.subscribe(() => {
 }); */
 
+// console.log(process.env);
+
 ReactDOM.render(
   <Root store={store} />,
   document.getElementById('root') as HTMLElement
 );
-registerServiceWorker();
+// registerServiceWorker();
