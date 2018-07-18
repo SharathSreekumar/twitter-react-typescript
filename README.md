@@ -2456,4 +2456,4 @@ If you have ideas for more “How To” recipes that should be on this page, [le
 ..* https://github.com/axios/axios/issues/262
 ..* https://github.com/axios/axios/issues/262
 ..* https://stackoverflow.com/questions/20035101/why-does-my-javascript-get-a-no-access-control-allow-origin-header-is-present
-
+..* http://blog.hubfly.com/solutions/how-to-fix-angular-4-api-call-issues
