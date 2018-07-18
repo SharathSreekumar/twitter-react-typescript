@@ -2453,7 +2453,7 @@ If you have ideas for more “How To” recipes that should be on this page, [le
 
 
 ## Reference fix:
-> https://github.com/axios/axios/issues/262
-> https://github.com/axios/axios/issues/262
-> https://stackoverflow.com/questions/20035101/why-does-my-javascript-get-a-no-access-control-allow-origin-header-is-present
+..* https://github.com/axios/axios/issues/262
+..* https://github.com/axios/axios/issues/262
+..* https://stackoverflow.com/questions/20035101/why-does-my-javascript-get-a-no-access-control-allow-origin-header-is-present
 
