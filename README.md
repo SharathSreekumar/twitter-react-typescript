@@ -2450,3 +2450,10 @@ In the future, we might start automatically compiling incompatible third-party m
 ## Something Missing?
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
+
+
+## Reference fix:
+..* https://github.com/axios/axios/issues/262
+..* https://github.com/axios/axios/issues/262
+..* https://stackoverflow.com/questions/20035101/why-does-my-javascript-get-a-no-access-control-allow-origin-header-is-present
+..* http://blog.hubfly.com/solutions/how-to-fix-angular-4-api-call-issues
