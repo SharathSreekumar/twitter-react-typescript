@@ -12,9 +12,11 @@ const TWITTER_SEARCH_API_URL = `https://api.twitter.com/1.1/search/tweets.json`;
 const TWITTER_SEARCH_QUERY_KEY = `q`;// `search_query`;
 const TWITTER_SEARCH_RESULT_TYPE_KEY = `result_type`; // `search_result_type`;
 const TWITTER_API_ACCESS_TOKEN_URL = `https://api.twitter.com/oauth/access_token`;
+const CORS_API_URL = `https://cors.io/?u=`;
 
 export {
     port,
+    CORS_API_URL,
     COUNTRY_LIST_API_URL,
     COUNTRY_ISO2_API_URL,
     COUNTRY_ISO3_API_URL,

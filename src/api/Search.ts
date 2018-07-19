@@ -1,9 +1,12 @@
 import axios from 'axios';
 import {
+    CORS_API_URL
+} from '../Constant';
+import {
     capitalizeString,
     generateOAuthHeader,
     getApiUrl,
-    // percentEncode,
+    percentEncode,
     urlParams,
     // checkIfObjectIsNotEmpty,
 } from '../utility/utility';
@@ -45,16 +48,17 @@ const searchApi = (search = '', headers: any = {}, searchType = 'twitter_search'
     
     const { authorization, param } = headers;
     console.log('headersAPI', authorization );
+    param.oauth_signature = percentEncode(param.oauth_signature);
     params = { ...params, ...param };
     console.log('paramsAPI', params);
-    const finalURL = urlParams(url, params);
+    const finalURL = CORS_API_URL + urlParams(url, params);
     console.log(finalURL);
     
     const auth = authorization.replace(/\n/g, '');
 
     const apiHeaders = {
         authorization: auth,
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
     }
     
     return axios({
