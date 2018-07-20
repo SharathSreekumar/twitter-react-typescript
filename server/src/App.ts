@@ -1,7 +1,8 @@
 import * as bodyParser from 'body-parser';
-import express from 'express';
-import logger from 'morgan';
-import * as controllers from './controllers';
+import * as cors from 'cors';
+import * as express from 'express';
+import * as logger from 'morgan';
+import * as controllers from './controllers/index';
 
 class App {
   public express: any;
@@ -20,6 +21,7 @@ class App {
       );
     }
 
+    this.express.use(cors());
     this.mountRoutes();
     this.mountAPIRoutes();
   }
@@ -36,9 +38,14 @@ class App {
     // Neutralize API endpoint uris for client and proxy API calls to different platforms
     const apiRouter = express.Router();
 
-    // apiRouter
-    //   .route('/:brand/:region/catalog/images/:id')
-    //   .get(catalogControllers.products.getImagesForL1Handler);
+    apiRouter
+      .route('/status')
+      .get(controllers.statusHandler);
+
+    apiRouter
+      .route('/get-tweets')
+      .get(controllers.fetchTwitterHandler);
+
 
     // bodyParser is used to render `body` data(ContentType: 'application/json'
     // or 'application/x-www-form-urlencoded') from the request `BODY`
@@ -48,7 +55,7 @@ class App {
       })
     );
     this.express.use(bodyParser.json());
-    this.express.use('/bff/', apiRouter);
+    this.express.use('/bapi/', apiRouter); // bapi -> Backend API
   }
 }
 

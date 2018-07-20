@@ -42,12 +42,12 @@ const fetchSearchSuccess = (data: object) => {
     }
 }
 
-const formatData = (data:any) => {
+/* const formatData = (data:any) => {
     if ((!data) || (data && !data.result)) {
         throw {message: 'No data found', code: 'no_data_found'};
     }
     return data.result;
-}
+} */
 
 function* fetchHeaderData(action:object) {
     try {
@@ -66,10 +66,9 @@ function* watchFetchHeaderData() {
 
 function* fetchSearchData(action:object) {
     try {
-        const { params: { searchText }, headers }: any = action;
-        console.log('fetchSearchData');
-        const data = yield call(searchApi, searchText, headers);
-        formatData(data);
+        const { params: { searchText } }: any = action;
+        const data = yield call(searchApi, searchText);
+        console.log('dataS', data);
         yield put(fetchSearchSuccess(data));
     } catch (error) {
         // console.log("Search error", error[0]);
