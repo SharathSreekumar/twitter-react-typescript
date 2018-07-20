@@ -1,11 +1,7 @@
 import app from './App';
 
-const port = process.env.APP_SERVER_PORT;
+const portEnv = process.env.APP_SERVER_PORT || 8000;
 
-app.listen((port: number, err: any) => {
-  if (err) {
-    return console.error(err);
-  }
-
-  return console.info(`Server is listening on ${port}`);
+app.listen(portEnv, () => {
+  return console.info(`Server is listening on ${portEnv}`);
 });

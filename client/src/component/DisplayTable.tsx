@@ -1,21 +1,24 @@
-import { 
+import {
+    Avatar,
+    Card,
+    CardActions,
+    CardContent,
+    CardHeader,
+    CardMedia,
+    Collapse,
+    IconButton,
     Paper,
-    Table, 
-    TableBody, 
-    TableCell, 
-    TableFooter,
-    TableHead, 
-    TablePagination, 
-    TableRow 
+    Typography,
+
 } from '@material-ui/core';
 import { createStyles, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import * as React from 'react';
 // import { connect, Dispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { dataContentCount } from '../utility/utility';
 
 const styles = ({ palette, spacing }: Theme) => createStyles({
     button: {
@@ -43,8 +46,7 @@ interface OwnProps extends WithStyles<typeof styles> {
 }
 
 interface DispatchProps {
-   getTweets?: (params: any, headers: any) => void;
-   getTwitterHeaders?: () => void;
+    getTweets?: (params: any, headers: any) => void;
 }
 
 interface StateProps {
@@ -57,8 +59,7 @@ interface StateProps {
 type ComponentProps = OwnProps & DispatchProps & StateProps;
 
 interface OwnState {
-    page: number;
-    rowsPerPage: number;
+    expanded: boolean;
     searchText: string;
 }
 
@@ -67,15 +68,9 @@ class DisplayTable extends React.Component<ComponentProps, OwnState> {
         super(props);
 
         this.state = {
-            page: 0,
-            rowsPerPage: 0,
+            expanded: false,
             searchText: props.searchText,
         }
-    }
-
-    public componentWillMount() {
-        const { getTwitterHeaders } = this.props;
-        getTwitterHeaders();
     }
 
     /**
@@ -85,12 +80,12 @@ class DisplayTable extends React.Component<ComponentProps, OwnState> {
      * @param snapshot 
      * This function is triggered on update of any `props` or `state`.
      */
-    public componentDidUpdate(prevProps: ComponentProps, prevState: OwnState, snapshot:any) {
+    public componentDidUpdate(prevProps: ComponentProps, prevState: OwnState, snapshot: any) {
         const { getTweets, searchText, header_data: { data } } = this.props;
 
         console.log('headerData', data);
         console.log('searchText', searchText);
-        if(prevProps.searchText !== searchText) {
+        if (prevProps.searchText !== searchText) {
             console.log('nextProps', data);
             getTweets({ searchText }, data);
         }
@@ -98,89 +93,91 @@ class DisplayTable extends React.Component<ComponentProps, OwnState> {
 
     public render() {
         const { classes, resp_data: { data } } = this.props;
-        const { rowsPerPage, page } = this.state;
-        const count = dataContentCount(data);
-        const emptyRows = this.calculateEmptyRows(count, page, rowsPerPage);
-        
+
         return (
             <div className="container">
                 <Paper className={classes.root}>
-                    <Table className={classes.table}>
-                        { this.tableHead(classes) }
-                        <TableBody>
-                            {this.tableBody(data, page, rowsPerPage)}
-                            {this.emptyTableRow(emptyRows, 6)}
-                        </TableBody>
-                        { this.pagination(page, count, rowsPerPage, 3) }
-                    </Table>
+                    {this.cardGenerate(data)}
                 </Paper>
             </div>
         );
     }
 
     /**
-     * This function handles Pagination's Next/Prev button page value
+     * This function is to handle
      */
-    private handleChangePage = (event:any, page:number) => {
-        this.setState({ page });
-    };
-
-    /**
-     * This function handles Row per table
-     */
-    private handleChangeRowsPerPage = (event:any) => {
-        this.setState({ rowsPerPage: event.target.value });
-    };
-
-    /**
-     * This function generates Table Head
-     */
-    private tableHead = (classes: any) => (
-        <TableHead>
-            <TableRow>
-                <TableCell className={classes.head}>Country Name</TableCell>
-                <TableCell className={classes.head}>ISO 2 Code</TableCell>
-                <TableCell className={classes.head}>ISO 3 Code</TableCell>
-            </TableRow>
-        </TableHead>
-    )
+    private handleExpandClick = () => {
+        this.setState(state => ({ expanded: !state.expanded }));
+      };
 
     /**
      * This function generates Table Body
      */
-    private tableBody = (dataArray:object[] = [], page:number = 0, rowsPerPage:number = 5) => (
-        (Array.isArray(dataArray) ? (dataArray.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((value, index) => (
-            <TableRow key={index}>
-                {Object.keys(value).map((jsonKey) => <TableCell key={jsonKey}>{value[jsonKey]}</TableCell>)}
-            </TableRow>
-        ))) : (<TableRow key={1}>
-            {Object.keys(dataArray).map((jsonKey) => <TableCell key={jsonKey}>{dataArray[jsonKey]}</TableCell>)}
-        </TableRow>)
-        )
-    )
-    
-    private calculateEmptyRows = (count:number = 0, page:number = 1, rowsPerPage:number = 5) => 
-        ((rowsPerPage - Math.min(rowsPerPage, count - page * rowsPerPage)) || 0)
+    private cardGenerate = (dataArray: object[] = []) => (
+        (Array.isArray(dataArray) ? (dataArray.map((value: any, index) => (
+            <Card>
+                <CardHeader
+                    avatar={
+                        <Avatar aria-label="Recipe"
+                            src={`${value.user.profile_image_url}`}
+                        >
+                            R
+                        </Avatar>
+                    }
 
-    private emptyTableRow = (emptyRows:number=0, colspan:number=6) => (
-        emptyRows > 0 && (
-            <TableRow style={{ height: 49 * emptyRows }}>
-                <TableCell colSpan={colspan} />
-            </TableRow>
+                    title={`${value.user.name}`}
+                    subheader={`${value.created_at}`}
+                />
+                <CardMedia
+                    image={`${value.user.profile_banner_url}`}
+                    title={`${value.user.screen_name}`}
+                />
+                <CardContent>
+                    <Typography component="p">
+                        { value.text }
+                    </Typography>
+                </CardContent>
+                <CardActions disableActionSpacing={true}>
+                    <IconButton
+                        onClick={this.handleExpandClick}
+                        aria-expanded={this.state.expanded}
+                        aria-label="Show more"
+                    >
+                        <ExpandMoreIcon />
+                    </IconButton>
+                </CardActions>
+                <Collapse in={this.state.expanded} timeout="auto" unmountOnExit={true}>
+                    <CardContent>
+                        <Typography paragraph={true} variant="body2">
+                            Method:
+              </Typography>
+                        <Typography paragraph={true}>
+                            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
+                            minutes.
+              </Typography>
+                        <Typography paragraph={true}>
+                            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
+                            heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
+                            browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving
+                            chicken and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion,
+                            salt and pepper, and cook, stirring often until thickened and fragrant, about 10
+                            minutes. Add saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+              </Typography>
+                        <Typography paragraph={true}>
+                            Add rice and stir very gently to distribute. Top with artichokes and peppers, and
+                            cook without stirring, until most of the liquid is absorbed, 15 to 18 minutes.
+                            Reduce heat to medium-low, add reserved shrimp and mussels, tucking them down into
+                            the rice, and cook again without stirring, until mussels have opened and rice is
+                            just tender, 5 to 7 minutes more. (Discard any mussels that don’t open.)
+              </Typography>
+                        <Typography>
+                            Set aside off of the heat to let rest for 10 minutes, and then serve.
+              </Typography>
+                    </CardContent>
+                </Collapse>
+            </Card>
         )
-    )
-    
-    private pagination = (page:number = 0, count:number = 0, rowsPerPage:number = 5, colspan:number = 3) => (
-        <TableFooter>
-            <TableRow>
-                <TablePagination colSpan={colspan}
-                    count={count} rowsPerPage={rowsPerPage}
-                    page={page} onChangePage={this.handleChangePage}
-                    onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                    />
-            </TableRow>
-        </TableFooter>
-    )
+        )) : ''));
 }
 
 const mapStateToProps = (state: any) => {
@@ -193,14 +190,11 @@ const mapStateToProps = (state: any) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): DispatchProps => ({
-    getTweets: (params: any, headers: any) => dispatch({ 
+    getTweets: (params: any, headers: any) => dispatch({
         params,
-        headers,
         type: 'FETCH_REQUESTED',
     }),
-    getTwitterHeaders: () => dispatch({
-        type: 'FETCH_API_HEADER',
-    })
+
 });
 
 

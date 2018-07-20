@@ -13,6 +13,7 @@ const TWITTER_SEARCH_QUERY_KEY = `q`;// `search_query`;
 const TWITTER_SEARCH_RESULT_TYPE_KEY = `result_type`; // `search_result_type`;
 const TWITTER_API_ACCESS_TOKEN_URL = `https://api.twitter.com/oauth/access_token`;
 const CORS_API_URL = `https://cors.io/?u=`;
+const LOCAL_CORS_SERVER = `http://localhost:8001/bapi/get-tweets`
 
 export {
     port,
@@ -24,6 +25,7 @@ export {
     ISO2_KEY,
     ISO3_KEY,
     LIST_SEARCH_KEY,
+    LOCAL_CORS_SERVER,
     SEARCH_QUERY_PARAM_KEY,
     TWITTER_API_ACCESS_TOKEN_URL,
     TWITTER_SEARCH_API_URL,
