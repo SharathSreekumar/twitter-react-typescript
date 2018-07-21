@@ -82,8 +82,6 @@ const oAuthSigningKey = (consumerSecret:string, tokenSecret:string) => {
  */
 const hmacSha1 = (baseString: string, signingKey: string) => {
     const hmac = CryptoJS.HmacSHA1(baseString, signingKey);
-    console.log('hmac', JSON.stringify(hmac));
-    console.log('hmac', hmac.toString(CryptoJS.enc.Base64));
     return hmac.toString(CryptoJS.enc.Base64) || '';
 };
 
@@ -158,14 +156,9 @@ const generateOAuthHeader = (url: string, method: string = 'GET', params: object
         oauth_version:'1.0', 
     }
 
-    console.log('url', url);
     const baseString = generateSignatureBaseString(method, url, {...tempData, ...params});
 
-    console.log('baseString', baseString);
-
     const signature = oAuthSignatureGenerator(baseString, oAuthSigningKey(REACT_APP_TWITTER_API_SECRET, REACT_APP_TWITTER_API_ACCESS_TOKEN_SECRET));
-
-    console.log('signature', signature);
 
     const data = {
         ...tempData,
@@ -178,7 +171,6 @@ const generateOAuthHeader = (url: string, method: string = 'GET', params: object
     ); */
 
     /* return oAuthSignature.then((accessSignature:string) => {
-        console.log('AuthO', accessSignature);
         const data = {
             oauth_consumer_key: process.env.REACT_APP_TWITTER_API_KEY,
             oauth_token: process.env.REACT_APP_TWITTER_API_ACCESS_TOKEN,

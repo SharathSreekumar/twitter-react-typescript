@@ -10,8 +10,6 @@ const store = configureStore();
 /* store.subscribe(() => {
 }); */
 
-// console.log(process.env);
-
 ReactDOM.render(
   <Root store={store} />,
   document.getElementById('root') as HTMLElement

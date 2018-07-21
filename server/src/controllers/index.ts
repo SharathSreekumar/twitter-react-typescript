@@ -36,14 +36,14 @@ function fetchTwitterHandler(req: Request, res: Response, next: NextFunction): v
         }, (error, response, body) => {
             if (!error && response.statusCode === 200) {
                 const info = JSON.parse(body);
-                res.status(200).json({ count: info.search_metadata.count, data: info.statuses });
+                res.status(200).json({ count: info.search_metadata.count, result: info.statuses });
             } else {
-                res.status(400).json({ message: JSON.stringify(error) });
+                res.status(400).json({ count: 0, result: [], message: JSON.stringify(error) });
             }
         });
     } catch (error) {
         next(error);
-        res.status(500).json({ message: 'Error in system' });
+        res.status(500).json({ count: 0, result: [], message: 'Error in system' });
     }
 }
 

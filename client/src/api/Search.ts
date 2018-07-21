@@ -1,5 +1,5 @@
 // import axios from 'axios';
-import * as request from 'request';
+// import * as request from 'request';
 import {
     capitalizeString,
     generateOAuthHeader,
@@ -32,22 +32,19 @@ const searchApi = (search = '', headers: any = {}, searchType = 'twitter_search'
         });
     }
 
-    const finalURL = urlParams(url, params);
-    
-    /* return request({
-        method,
-        url: finalURL,
-    }, (error, response, body) => {
-        if (!error && response.statusCode === 200) {
-          const info = JSON.parse(body);
-          console.log('asd', JSON.stringify(info));
-        } else {
-            console.log(JSON.stringify(error));
-            console.log(JSON.stringify(response));
-        }
-    }); */
-
-    return request({ method, url: finalURL });
+    return fetch(urlParams(url, params), {})
+    .then((response) => {
+        return response.json()
+        .then(body => {
+            if (body && body.RestResponse) {
+                return body.RestResponse;
+            } else {
+                return body;
+            }
+        });
+    }).catch((error) => {
+        console.error(JSON.stringify(error));
+    });
 }
 
 export {
