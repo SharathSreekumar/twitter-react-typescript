@@ -16,7 +16,7 @@ services:
       - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
     volumes:
       - ./server/src:/srv/app/fr-shohin-admin-server/src
-    command: npm run dev
+    command: npm run start
 
 ################################
 #   Setup client container
