@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/classnames": "^2.2.6",
     "@types/crypto-js": "^3.1.41",
     "@types/jest": "^23.1.0",
     "@types/jssha": "0.0.29",
@@ -12,6 +13,8 @@
     "@types/raven-js": "^3.10.0",
     "@types/react": "^16.3.17",
     "@types/react-dom": "^16.0.6",
+    "@types/request": "^2.47.1",
+    "@types/webpack": "^4.4.7",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
@@ -39,6 +42,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.1.1",
+    "classnames": "^2.2.6",
     "crypto-js": "^3.1.9-1",
     "dotenv": "^6.0.0",
     "jssha": "^2.3.1",
@@ -58,7 +62,8 @@
     "redux-saga": "^0.16.0",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
-    "ts-loader": "^4.4.1"
+    "ts-loader": "^4.4.1",
+    "webpack": "^3.11.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
