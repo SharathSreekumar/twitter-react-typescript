@@ -1,7 +1,6 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-<<<<<<< HEAD
 node_modules/
 
 # testing
@@ -10,16 +9,6 @@ coverage/
 # production
 build/
 dist/
-=======
-*/node_modules
-
-# testing
-*/coverage
-
-# production
-*/build
-*/dist
->>>>>>> client-server-ts
 
 # misc
 .DS_Store
