@@ -54,7 +54,6 @@ function* fetchHeaderData(action:object) {
         const data = yield call(getTwitterApiHeader);
         yield put(fetchHeaderSuccess(data));
     } catch (error) {
-        // console.log("Search error", error[0]);
         yield put(fetchHeaderError(error));
     }
 }
@@ -68,10 +67,8 @@ function* fetchSearchData(action:object) {
     try {
         const { params: { searchText } }: any = action;
         const data = yield call(searchApi, searchText);
-        console.log('dataS', data);
         yield put(fetchSearchSuccess(data));
     } catch (error) {
-        // console.log("Search error", error[0]);
         yield put(fetchSearchError(error));
     }
 }
