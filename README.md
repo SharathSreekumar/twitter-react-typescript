@@ -38,15 +38,11 @@ To build independently:
 
 - server/:
 
-For production:
-
-> npm start
+> npm start // For production
 
 or
 
-For development:
-
-> npm run dev
+> npm run dev // For development
 
 
 - client/:
