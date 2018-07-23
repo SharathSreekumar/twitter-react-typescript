@@ -15,6 +15,10 @@ function fetchTwitterHandler(req: Request, res: Response, next: NextFunction): v
         let params = req.query;
         const { url } = getApiUrl();
         const method = 'GET';
+        params = {
+            ...params,
+            count: 100
+        }
         const headers = generateOAuthHeader(url, method, params);
 
         const { authorization, param } = headers;
@@ -36,24 +40,14 @@ function fetchTwitterHandler(req: Request, res: Response, next: NextFunction): v
         }, (error, response, body) => {
             if (!error && response.statusCode === 200) {
                 const info = JSON.parse(body);
-<<<<<<< HEAD
-                res.status(200).json({ count: info.search_metadata.count, data: info.statuses });
-            } else {
-                res.status(400).json({ message: JSON.stringify(error) });
-=======
                 res.status(200).json({ count: info.search_metadata.count, result: info.statuses });
             } else {
                 res.status(400).json({ count: 0, result: [], message: JSON.stringify(error) });
->>>>>>> 82b10091074100d50169662305308fe0e4d9db2e
             }
         });
     } catch (error) {
         next(error);
-<<<<<<< HEAD
-        res.status(500).json({ message: 'Error in system' });
-=======
         res.status(500).json({ count: 0, result: [], message: 'Error in system' });
->>>>>>> 82b10091074100d50169662305308fe0e4d9db2e
     }
 }
 

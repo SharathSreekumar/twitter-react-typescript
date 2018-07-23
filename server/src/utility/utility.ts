@@ -73,11 +73,6 @@ const oAuthSigningKey = (consumerSecret:string = '', tokenSecret:string = '') =>
  */
 const hmacSha1 = (baseString: string, signingKey: string) => {
     const hmac = CryptoJS.HmacSHA1(baseString, signingKey);
-<<<<<<< HEAD
-    console.log('hmac', JSON.stringify(hmac));
-    console.log('hmac', hmac.toString(CryptoJS.enc.Base64));
-=======
->>>>>>> 82b10091074100d50169662305308fe0e4d9db2e
     return hmac.toString(CryptoJS.enc.Base64) || '';
 };
 
@@ -153,26 +148,13 @@ const generateOAuthHeader = (url: string, method: string = 'GET', params: object
         oauth_version:'1.0', 
     }
 
-<<<<<<< HEAD
-    console.log('url', url);
     const baseString = generateSignatureBaseString(method, url, {...tempData, ...params});
 
-    console.log('baseString', baseString);
-
-=======
-    const baseString = generateSignatureBaseString(method, url, {...tempData, ...params});
-
->>>>>>> 82b10091074100d50169662305308fe0e4d9db2e
     const signature = oAuthSignatureGenerator(
         baseString, 
         oAuthSigningKey(REACT_APP_TWITTER_API_SECRET, REACT_APP_TWITTER_API_ACCESS_TOKEN_SECRET)
     );
 
-<<<<<<< HEAD
-    console.log('signature', signature);
-
-=======
->>>>>>> 82b10091074100d50169662305308fe0e4d9db2e
     const data = {
         ...tempData,
         'oauth_signature': percentEncode(signature)
