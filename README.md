@@ -22,7 +22,9 @@ Also enter Twitter credentials:
 
 For Sentry Key:
 
-> REACT_APP_SENTRY_TRACKER_KEY=<Sentry_Tracker_key>
+> REACT_APP_SENTRY_TRACKER_KEY=<Sentry_React_Tracker_key>
+
+> NODE_APP_SENTRY_TRACKER_KEY=<Sentry_Node_Tracker_key>
 
 Build Docker compose:
 
