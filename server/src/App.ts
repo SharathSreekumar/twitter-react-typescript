@@ -2,7 +2,11 @@ import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as logger from 'morgan';
+import * as Raven from 'raven';
 import * as controllers from './controllers/index';
+
+// Raven.config('__DSN__').install();
+Raven.config(`https://${process.env.NODE_APP_SENTRY_TRACKER_KEY}@sentry.io/1248681`, { sendTimeout: 5 }).install();
 
 class App {
   public express: any;
@@ -21,17 +25,23 @@ class App {
       );
     }
 
+    // The request handler must be the first middleware on the app
+    this.express.use(Raven.requestHandler());
+
     this.express.use(cors());
     this.mountRoutes();
     this.mountAPIRoutes();
   }
 
   private mountRoutes(): void {
+    // Sentry work test
+    /* this.express.get('/',(req, res) => {
+        throw new Error('Sentry Break Test!');
+    }); */
+
     this.express.get('/', (req: any, res: any) => {
       res.status(200).json({ message: 'Hello World!' });
     });
-
-    // Serve the client build
   }
 
   private mountAPIRoutes(): void {

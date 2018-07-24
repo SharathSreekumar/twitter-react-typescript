@@ -2,16 +2,16 @@
 // import * as request from 'request';
 import {
     capitalizeString,
-    generateOAuthHeader,
+    // generateOAuthHeader,
     getApiUrl,
     // percentEncode,
     urlParams,
     // checkIfObjectIsNotEmpty,
 } from '../utility/utility';
 
-const getTwitterApiHeader = () => {
-    return generateOAuthHeader('');
-}
+// const getTwitterApiHeader = () => {
+//     return generateOAuthHeader('');
+// }
 
 const searchApi = (search = '', headers: any = {}, searchType = 'twitter_search', method:string = 'GET') => {
     if(!search) {
@@ -48,6 +48,6 @@ const searchApi = (search = '', headers: any = {}, searchType = 'twitter_search'
 }
 
 export {
-    getTwitterApiHeader,
+    // getTwitterApiHeader,
     searchApi
 }

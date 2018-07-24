@@ -84,12 +84,10 @@ interface OwnProps extends WithStyles<typeof styles> {
 }
 
 interface DispatchProps {
-    getTweets?: (params: any, headers: any) => void;
+    getTweets?: (params: any) => void;
 }
 
 interface StateProps {
-    header_data?: any;
-    header_fail?: any;
     resp_data?: any;
     resp_fail?: any;
 }
@@ -119,10 +117,10 @@ class DisplayTable extends React.Component<ComponentProps, OwnState> {
      * This function is triggered on update of any `props` or `state`.
      */
     public componentDidUpdate(prevProps: ComponentProps, prevState: OwnState, snapshot: any) {
-        const { getTweets, searchText, header_data: { data } } = this.props;
+        const { getTweets, searchText } = this.props;
 
         if (prevProps.searchText !== searchText) {
-            getTweets({ searchText }, data);
+            getTweets({ searchText });
         }
     }
 
@@ -184,15 +182,13 @@ class DisplayTable extends React.Component<ComponentProps, OwnState> {
 
 const mapStateToProps = (state: any) => {
     return {
-        header_data: state.searchReducer.headerSuccess,
-        header_fail: state.searchReducer.headerFail,
         resp_data: state.searchReducer.searchSuccess.data || {},
         resp_fail: state.searchReducer.searchFail,
     };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<any>): DispatchProps => ({
-    getTweets: (params: any, headers: any) => dispatch({
+    getTweets: (params: any) => dispatch({
         params,
         type: 'FETCH_REQUESTED',
     }),
