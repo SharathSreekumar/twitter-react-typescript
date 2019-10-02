@@ -27,4 +27,5 @@ RUN npm install
 
 COPY . /srv/app/twitter-client
 
-CMD [ "npm", "start" ]
+# CMD [ "npm", "start" ]
+RUN npm start
