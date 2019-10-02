@@ -10,6 +10,7 @@ COPY package-lock.json /srv/app/twitter-server
 RUN npm install
 RUN npm config set strict-ssl false
 RUN npm config set ca ""
+RUN npm config delete ca
 
 COPY . /srv/app/twitter-server
 

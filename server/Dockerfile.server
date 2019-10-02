@@ -1,33 +1,17 @@
 FROM node:8.7.0-alpine
 
-## Uncomment the following line if there are dependencies on private FR repos
-# ARG SSH_KEY
-
-RUN apk update && apk add openssh-client git \
-  && mkdir -p /root/.ssh && chmod 0700 /root/.ssh \
-  ## add github.com to known hosts
-  && ssh-keyscan github.com >/root/.ssh/known_hosts
-
+# Create app directory
 RUN mkdir -p /srv/app/twitter-server
 WORKDIR /srv/app/twitter-server
 
 COPY package.json /srv/app/twitter-server
 COPY package-lock.json /srv/app/twitter-server
 
-ARG INSTALL_ENV="--development"
-
-## If there are dependencies on FR private repos, uncomment line 22-24 and comment line 27, run docker build with ARG SSH_KEY:
-## SSH_KEY=$(cat ~/.ssh/id_rsa) docker build -t twitter-server .
-
-# RUN echo "$SSH_KEY" > /root/.ssh/id_rsa && chmod 0600 /root/.ssh/id_rsa \
-#   && npm install ${INSTALL_ENV} \
-#   && rm /root/.ssh/id_rsa
-
-## Otherwise:
-RUN npm install ${INSTALL_ENV}}
+RUN npm install
+RUN npm config set strict-ssl false
+RUN npm config set ca ""
+RUN npm config delete ca
 
 COPY . /srv/app/twitter-server
-ENV PATH $PATH:./node_modules/.bin/
 
-EXPOSE 8000
 CMD ["npm", "run", "dev"]
