@@ -5,7 +5,8 @@ FROM node:8.7.0-alpine
 RUN mkdir -p /srv/app/twitter-client
 WORKDIR /srv/app/twitter-client
 
-ENV APP_SERVER_HOST https://twitter-react-app.herokuapp.com
+# ENV APP_SERVER_HOST https://twitter-react-app.herokuapp.com
+ENV APP_SERVER_HOST 0.0.0.0
 ENV APP_SERVER_PORT 8001
 ENV REACT_APP_PORT 3005
 ENV REACT_APP_HOST_ENVIRONMENT development
