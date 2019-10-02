@@ -10,13 +10,13 @@ services:
     expose:
       - ${APP_SERVER_PORT}
     environment:
-      # API_HOST: ${API_HOST}
-      APP_SERVER_PORT: ${APP_SERVER_PORT}
+      # - API_HOST: ${API_HOST}
+      - APP_SERVER_PORT=${APP_SERVER_PORT}
     ports:
       - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
     volumes:
       - ./server/src:/srv/app/fr-shohin-admin-server/src
-    command: npm run start
+    command: npm run dev
 
 ################################
 #   Setup client container
@@ -25,6 +25,7 @@ services:
     build: ./client
     environment:
       - REACT_APP_PORT=${REACT_APP_PORT}
+      - APP_SERVER_PORT=${APP_SERVER_PORT}
     expose:
       - ${REACT_APP_PORT}
     ports:
@@ -32,6 +33,8 @@ services:
     volumes:
       - ./client/src:/srv/app/twitter-client/src
       - ./client/public:/srv/app/twitter-client/public
+    depends_on:
+      - server 
     # links:
     #   - server
     command: npm run start
