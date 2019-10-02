@@ -13,6 +13,10 @@
     "tsc": "tsc",
     "lint-staged": "lint-staged"
   },
+  "engines": {
+    "node": "8.7.0",
+    "npm": "5.4.2"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

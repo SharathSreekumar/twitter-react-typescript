@@ -70,5 +70,9 @@
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
+  },
+  "engines": {
+    "node": "8.7.0",
+    "npm": "5.4.2"
   }
 }
