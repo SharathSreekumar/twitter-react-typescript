@@ -1,7 +1,7 @@
 build:
   docker:
-    server: ./server/Dockerfile
-    client: ./client/Dockerfile
+    server: ./server/Dockerfile.server
+    client: ./client/Dockerfile.client
   # config:
   #   BUNDLE_INSTALL_ARGS: --jobs 10 --retry=3 --without development test
 run:

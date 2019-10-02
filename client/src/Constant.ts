@@ -13,7 +13,7 @@ const TWITTER_SEARCH_QUERY_KEY = `q`;// `search_query`;
 const TWITTER_SEARCH_RESULT_TYPE_KEY = `result_type`; // `search_result_type`;
 const TWITTER_API_ACCESS_TOKEN_URL = `https://api.twitter.com/oauth/access_token`;
 const CORS_API_URL = `https://cors.io/?u=`;
-const LOCAL_CORS_SERVER = `http://localhost:${process.env.APP_SERVER_PORT || 8001}/bapi/get-tweets`
+const LOCAL_CORS_SERVER = `http://${process.env.APP_SERVER_HOST || 'localhost'}:${process.env.APP_SERVER_PORT || 8001}/bapi/get-tweets`
 
 export {
     port,
