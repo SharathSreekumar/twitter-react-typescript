@@ -4,8 +4,8 @@ FROM node:8.7.0-alpine AS node_builder
 RUN mkdir -p /srv/app/twitter-server
 WORKDIR /srv/app/twitter-server
 
-COPY package.json /srv/app/twitter-server
-COPY package-lock.json /srv/app/twitter-server
+COPY ./server/package.json /srv/app/twitter-server
+COPY ./server/package-lock.json /srv/app/twitter-server
 
 ENV APP_SERVER_HOST 0.0.0.0
 ENV APP_SERVER_PORT 8001
@@ -25,7 +25,7 @@ RUN npm config set strict-ssl false
 RUN npm config set ca ""
 RUN npm config delete ca
 
-COPY . /srv/app/twitter-server
+COPY --from=node_builder ./server /srv/app/twitter-server
 
 # CMD ["npm", "run", "dev"]
 RUN npm run dev
@@ -51,12 +51,12 @@ ENV REACT_APP_TWITTER_API_ACCESS_TOKEN_SECRET r0s5p7mBPAXicLhtFg2yUq65mfCkuJkkr3
 ENV REACT_APP_SENTRY_TRACKER_KEY 01ff9d17e14f4524a8580bbcdc26fa1c
 ENV NODE_APP_SENTRY_TRACKER_KEY bd6d8c1ac8b3490fa41b4710a3572a8c
 
-COPY package.json /srv/app/twitter-client
-COPY package-lock.json /srv/app/twitter-client
+COPY ./client/package.json /srv/app/twitter-client
+COPY ./client/package-lock.json /srv/app/twitter-client
 
 RUN npm install 
 
-COPY . /srv/app/twitter-client
+COPY --from=react_builder ./client /srv/app/twitter-client
 
 # CMD [ "npm", "start" ]
 RUN npm start
