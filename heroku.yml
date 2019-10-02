@@ -1,12 +1,12 @@
 build:
   docker:
-    server: Dockerfile
-    client: Dockerfile
+    server: ./server/Dockerfile
+    client: ./client/Dockerfile
   # config:
   #   BUNDLE_INSTALL_ARGS: --jobs 10 --retry=3 --without development test
 run:
   server: npm run dev
-  client: nom start
+  client: npm start
   # worker:
   #   command:
   #     - 
