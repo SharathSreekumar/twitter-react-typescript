@@ -5,8 +5,8 @@ build:
   # config:
   #   BUNDLE_INSTALL_ARGS: --jobs 10 --retry=3 --without development test
 run:
-  server: npm run dev
-  client: npm run build
+  server: npm run start
+  client: npm run start
   # worker:
   #   command:
   #     - 
