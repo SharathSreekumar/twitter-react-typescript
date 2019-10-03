@@ -15,7 +15,9 @@ services:
     ports:
       - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
     volumes:
-      - ./server/src:/srv/app/fr-shohin-admin-server/src
+      - ./server/src:/srv/app/twitter-server/src
+    env_file:
+      - .env
     command: npm run dev
 
 ################################
@@ -26,6 +28,7 @@ services:
     environment:
       - REACT_APP_PORT=${REACT_APP_PORT}
       - APP_SERVER_PORT=${APP_SERVER_PORT}
+      - REACT_
     expose:
       - ${REACT_APP_PORT}
     ports:

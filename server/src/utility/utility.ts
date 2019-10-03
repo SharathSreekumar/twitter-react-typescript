@@ -135,6 +135,8 @@ const generateOAuthHeader = (url: string, method: string = 'GET', params: object
         REACT_APP_TWITTER_API_SECRET, 
     } = process.env;
     
+
+    console.log('PROCESS_ENV', process.env);
     const currentTimeStamp = getCurrentTimeStamp();
     const btoa = require('btoa');
     const nonceGenerate = btoa(REACT_APP_TWITTER_API_KEY + ':' + currentTimeStamp);

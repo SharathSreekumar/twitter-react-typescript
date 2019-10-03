@@ -44,7 +44,7 @@ class Search extends React.Component<ComponentProps, OwnState> {
                     onChange={this.handleChange}
                     margin="normal"
                 />
-                <Button onClick={this.handleClick}> Search </Button>
+                <Button onClick={this.handleClick} disabled={this.state.searchText === ''}> Search </Button>
             </div>
         );
     }

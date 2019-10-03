@@ -24,10 +24,8 @@ function fetchTwitterHandler(req: Request, res: Response, next: NextFunction): v
         const { authorization, param } = headers;
         params = { ...params, ...param };
         const finalURL = urlParams(url, params);
-
-
+        
         const auth = authorization.replace(/\n/g, '');
-
         const apiHeaders = {
             authorization: auth,
             'content-type': 'application/json',
@@ -40,8 +38,10 @@ function fetchTwitterHandler(req: Request, res: Response, next: NextFunction): v
         }, (error, response, body) => {
             if (!error && response.statusCode === 200) {
                 const info = JSON.parse(body);
+                console.log('API_RESPONSE', info);
                 res.status(200).json({ count: info.search_metadata.count, result: info.statuses });
             } else {
+                console.log('ERROR', error);
                 res.status(400).json({ count: 0, result: [], message: JSON.stringify(error) });
             }
         });
