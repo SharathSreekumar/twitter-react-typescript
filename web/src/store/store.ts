@@ -11,7 +11,6 @@ Raven
 
 const sagaMiddleware = createSagaMiddleware({
     onError: (error) => {
-        console.log('SagaError', error);
         Raven.captureException(error);
     }
 });
