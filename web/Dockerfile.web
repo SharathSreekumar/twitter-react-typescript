@@ -1,0 +1,33 @@
+
+FROM node:8.7.0-alpine
+
+# Create app directory and use it as the working directory
+RUN mkdir -p /srv/app/twitter-web
+WORKDIR /srv/app/twitter-web
+
+# ENV APP_SERVER_HOST https://twitter-react-app.herokuapp.com
+ENV APP_SERVER_HOST 0.0.0.0
+ENV APP_SERVER_PORT 8001
+ENV REACT_APP_PORT 3005
+ENV REACT_APP_HOST_ENVIRONMENT development
+
+## Test Twitter Keys ##
+ENV REACT_APP_TWITTER_API_KEY OMq4iSoKoEDSvmJRu9DS0KvbG
+ENV REACT_APP_TWITTER_API_SECRET Piqn6jA2tJDXdY5LV1XTQIGFQtSFPos16ijzRne1kDSSkWfQD6
+ENV REACT_APP_TWITTER_API_ACCESS_TOKEN 701108378983129088-Kn9VLaJ4mcYx3u9j6hJKtNg6WRo11ib
+ENV REACT_APP_TWITTER_API_ACCESS_TOKEN_SECRET lgC5nFwJI5bEn4k8pfOKvyijYzgDCHw1k3uQyqoMsP2Xg
+
+## Sentry.io Keys
+ENV REACT_APP_SENTRY_TRACKER_KEY 01ff9d17e14f4524a8580bbcdc26fa1c
+ENV NODE_APP_SENTRY_TRACKER_KEY bd6d8c1ac8b3490fa41b4710a3572a8c
+
+COPY package.json /srv/app/twitter-web
+COPY package-lock.json /srv/app/twitter-web
+
+RUN npm install 
+
+COPY . /srv/app/twitter-web
+
+# CMD [ "npm", "start" ]
+# RUN npm run start
+RUN npm run build
