@@ -62,17 +62,20 @@
     "redux-saga": "^0.16.0",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
+    "serve": "^11.2.0",
     "ts-loader": "^4.4.1",
     "webpack": "^3.11.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
+    "build:prod": "npm build --prod && serve -s build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
   },
   "engines": {
     "node": "8.7.0",
     "npm": "5.4.2"
-  }
+  },
+  "proxy": "http://localhost:8001"
 }

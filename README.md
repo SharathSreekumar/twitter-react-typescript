@@ -57,3 +57,36 @@ Reference:
 https://devcenter.heroku.com/articles/local-development-with-docker-compose
 
 https://devcenter.heroku.com/articles/container-registry-and-runtime
+
+## Setting up for Heroku:
+
+Create heroku.yml and Procfile in root folder:
+In heroku.yml:
+
+>
+build:
+  docker:
+    server: ./server/Dockerfile.server
+    web: ./web/Dockerfile.web
+run:
+  server: npm run start
+  web: npm run start
+
+
+In Procfile:
+> 
+web: npm start
+server: npm start
+
+
+## Run the following commands:
+
+Create an empty Heroku server:
+
+Now run the following commands:
+
+> heroku login
+> heroku container:login
+> heroku stack:set container --app <heroku-app-name>
+> heroku container:push server web --recursive --app <heroku-app-name>
+> heroku container:release server web

@@ -11,3 +11,9 @@ run:
   #   command:
   #     - 
   #   image: server
+
+# build:
+#   docker:
+#     web: Dockerfile
+#     worker:
+#        dockerfile: Dockerfile
