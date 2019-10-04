@@ -2,7 +2,7 @@ FROM node:8.7.0-alpine
 
 # To ensure bash is installed in the image
 # RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-RUN apk update; apk add curl docker boot
+RUN apk update; apk add curl docker
 RUN service docker start
 
 # Create app directory
