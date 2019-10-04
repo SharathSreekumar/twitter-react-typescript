@@ -1,4 +1,4 @@
-const port = 3000;
+const port = process.env.REACT_APP_PORT || 3000;
 const COUNTRY_LIST_API_URL = `http://services.groupkt.com/country/get/all`; // Gets list of all the countries
 const COUNTRY_ISO2_API_URL = `http://services.groupkt.com/country/get/iso2code/country2_code`; // E.x.: http://services.groupkt.com/country/get/iso2code/IN
 const COUNTRY_ISO3_API_URL = `http://services.groupkt.com/country/get/iso3code/country3_code`; // E.x.: http://services.groupkt.com/country/get/iso3code/IND
