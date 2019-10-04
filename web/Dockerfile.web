@@ -1,5 +1,7 @@
-
 FROM node:8.7.0-alpine
+
+# To ensure bash is installed in the image
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Create app directory and use it as the working directory
 RUN mkdir -p /srv/app/twitter-web
