@@ -2,6 +2,7 @@ FROM node:8.7.0-alpine
 
 # To ensure bash is installed in the image
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+RUN apt-get update; apt-get install curl
 
 # Create app directory
 RUN mkdir -p /srv/app/twitter-server
