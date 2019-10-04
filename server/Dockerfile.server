@@ -33,6 +33,8 @@ RUN npm config delete ca
 
 COPY . /srv/app/twitter-server
 
+EXPOSE 8001
+
 CMD ["npm", "run", "dev"]
 
 # RUN npm run dev
