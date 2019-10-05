@@ -1,19 +1,19 @@
-build:
-  docker:
-    server: ./server/Dockerfile.server
-    web: ./web/Dockerfile.web
-  # config:
-  #   BUNDLE_INSTALL_ARGS: --jobs 10 --retry=3 --without development test
-run:
-  server: npm run start
-  web: npm run start
-  # worker:
-  #   command:
-  #     - 
-  #   image: server
-
 # build:
 #   docker:
-#     web: Dockerfile
-#     worker:
-#        dockerfile: Dockerfile
+#     server: ./server/Dockerfile.server
+#     web: ./web/Dockerfile.web
+#   # config:
+#   #   BUNDLE_INSTALL_ARGS: --jobs 10 --retry=3 --without development test
+# run:
+#   server: npm run start
+#   web: npm run start
+#   # worker:
+#   #   command:
+#   #     - 
+#   #   image: server
+
+build:
+  docker:
+    web: Dockerfile
+    worker:
+      dockerfile: Dockerfile

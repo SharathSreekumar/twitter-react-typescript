@@ -77,5 +77,5 @@
     "node": "8.7.0",
     "npm": "5.4.2"
   },
-  "proxy": "http://server:8001"
+  "proxy": "http://localhost:8001"
 }
