@@ -64,7 +64,7 @@ COPY --from=nodeBuilder /app/server/package-lock.json ./
 RUN npm install
 COPY --from=reactBuilder /build ./web
 COPY --from=reactBuilder package.json ./web
-COPY --from=reactBuilder package-lock.json ./web
+# COPY --from=reactBuilder package-lock.json ./web
 # COPY --from=reactBuilder /node-modules ./web
 RUN cd ./web && npm install && cd ..
 # RUN cd ./web 
