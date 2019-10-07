@@ -30,7 +30,7 @@ ENV REACT_APP_SENTRY_TRACKER_KEY 01ff9d17e14f4524a8580bbcdc26fa1c
 ENV NODE_APP_SENTRY_TRACKER_KEY bd6d8c1ac8b3490fa41b4710a3572a8c
 
 COPY package.json /srv/app/web
-COPY package-lock.json /srv/app/web
+# COPY package-lock.json /srv/app/web
 
 RUN npm install
 
