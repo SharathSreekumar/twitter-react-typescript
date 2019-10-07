@@ -16,6 +16,6 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: "npm run start:prod"
+  web: "npm run startProd"
   worker:
     dockerfile: Dockerfile
