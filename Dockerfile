@@ -1,5 +1,6 @@
 # Build Node application
 FROM node:8.7.0-alpine AS nodeBuilder
+# Add all the files to ./app
 ADD . /app
 # RUN mkdir -p /app/server
 WORKDIR /app/server
@@ -28,7 +29,7 @@ RUN npm config delete ca
 # COPY . /srv/app/server
 
 # RUN npm run dev
-# RUN npm run build
+RUN npm run build
 # RUN npm start
 
 # Build the React application

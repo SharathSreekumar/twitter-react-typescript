@@ -66,6 +66,7 @@
     "fast-json-patch": "^2.0.6",
     "nodemon": "^1.17.4",
     "oauth": "^0.9.15",
+    "path": "^0.12.7",
     "raven": "^2.6.3",
     "request": "^2.87.0"
   }

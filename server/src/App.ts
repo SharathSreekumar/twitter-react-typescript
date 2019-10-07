@@ -2,6 +2,7 @@ import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as logger from 'morgan';
+import * as path from 'path';
 import * as Raven from 'raven';
 import * as controllers from './controllers/index';
 
@@ -27,7 +28,7 @@ class App {
 
     // The request handler must be the first middleware on the app
     this.express.use(Raven.requestHandler());
-
+    
     this.express.use(cors());
     this.mountRoutes();
     this.mountAPIRoutes();
@@ -39,8 +40,12 @@ class App {
         throw new Error('Sentry Break Test!');
     }); */
 
-    this.express.get('/', (req: any, res: any) => {
+    /* this.express.get('/', (req: any, res: any) => {
       res.status(200).json({ message: 'Hello World!' });
+    }); */
+    this.express.get('/', (req,res) =>{
+      console.log(__dirname + '/web/index.html');
+      res.sendFile(path.join(__dirname + '/web/index.html'));
     });
   }
 
