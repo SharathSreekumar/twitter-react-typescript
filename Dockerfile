@@ -60,7 +60,7 @@ ARG current_path=$(PWD)
 COPY --from=nodeBuilder /app/server/dist ./
 COPY --from=nodeBuilder /app/.env.development ./
 COPY --from=nodeBuilder /app/server/package.json ./
-COPY --from=nodeBuilder /app/server/package-lock.json ./
+# COPY --from=nodeBuilder /app/server/package-lock.json ./
 RUN npm install
 COPY --from=reactBuilder /build ./web
 COPY --from=reactBuilder package.json ./web

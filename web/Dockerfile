@@ -5,7 +5,7 @@ RUN mkdir -p /srv/app/twitter-web
 WORKDIR /srv/app/twitter-web
 
 COPY package.json /srv/app/twitter-web
-COPY package-lock.json /srv/app/twitter-web
+# COPY package-lock.json /srv/app/twitter-web
 
 RUN npm install 
 

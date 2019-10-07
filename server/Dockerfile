@@ -5,7 +5,7 @@ RUN mkdir -p /srv/app/twitter-server
 WORKDIR /srv/app/twitter-server
 
 COPY package.json /srv/app/twitter-server
-COPY package-lock.json /srv/app/twitter-server
+# COPY package-lock.json /srv/app/twitter-server
 
 # ENV APP_SERVER_HOST https://twitter-react-app.herokuapp.com
 ENV APP_SERVER_HOST 0.0.0.0
