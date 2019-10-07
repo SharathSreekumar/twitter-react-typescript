@@ -33,7 +33,7 @@ RUN npm config delete ca
 
 # Build the React application
 FROM node:8.7.0-alpine AS reactBuilder
-COPY --from=nodeBuilder /app/web ./
+COPY --from=nodeBuilder /app/client ./
 RUN npm install
 # RUN npm run build
 
