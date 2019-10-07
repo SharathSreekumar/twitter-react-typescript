@@ -5,8 +5,8 @@ FROM node:8.7.0-alpine
 RUN apk update; apk add curl
 
 # Create app directory and use it as the working directory
-RUN mkdir -p /srv/app/twitter-web
-WORKDIR /srv/app/twitter-web
+RUN mkdir -p /srv/app/web
+WORKDIR /srv/app/web
 
 # ENV APP_SERVER_HOST https://twitter-react-app.herokuapp.com
 # ENV APP_SERVER_HOST 0.0.0.0
@@ -29,12 +29,12 @@ ENV REACT_APP_HOST_ENVIRONMENT development
 ENV REACT_APP_SENTRY_TRACKER_KEY 01ff9d17e14f4524a8580bbcdc26fa1c
 ENV NODE_APP_SENTRY_TRACKER_KEY bd6d8c1ac8b3490fa41b4710a3572a8c
 
-COPY package.json /srv/app/twitter-web
-COPY package-lock.json /srv/app/twitter-web
+COPY package.json /srv/app/web
+COPY package-lock.json /srv/app/web
 
 RUN npm install
 
-COPY . /srv/app/twitter-web
+COPY . /srv/app/web
 
 EXPOSE 80
 
