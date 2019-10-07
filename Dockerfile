@@ -34,7 +34,9 @@ RUN npm config delete ca
 # Build the React application
 FROM node:8.7.0-alpine AS reactBuilder
 COPY --from=nodeBuilder /app/client ./
+# RUN ls
 RUN npm install
+# RUN rm -rf ./build
 # RUN npm run build
 
 # Final stage build, this will be the container
@@ -55,15 +57,18 @@ ENV REACT_APP_TWITTER_API_ACCESS_TOKEN_SECRET lgC5nFwJI5bEn4k8pfOKvyijYzgDCHw1k3
 ## Sentry.io Keys
 ENV NODE_APP_SENTRY_TRACKER_KEY bd6d8c1ac8b3490fa41b4710a3572a8c
 
-ARG current_path=$(PWD)
+# ARG current_path=$(PWD)
 
 COPY --from=nodeBuilder /app/server/dist ./
 COPY --from=nodeBuilder /app/.env.development ./
 COPY --from=nodeBuilder /app/server/package.json ./
 # COPY --from=nodeBuilder /app/server/package-lock.json ./
 RUN npm install
+
+RUN mkdir -p ./web
 COPY --from=reactBuilder /build ./web
 COPY --from=reactBuilder package.json ./web
+COPY --from=nodeBuilder /app/.env.development ./web
 # COPY --from=reactBuilder package-lock.json ./web
 # COPY --from=reactBuilder /node-modules ./web
 RUN cd ./web && npm install && cd ..
