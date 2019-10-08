@@ -15,5 +15,7 @@
 build:
   docker:
     web: Dockerfile
+  config:
+    PORT: $PORT
 run:
-  web: "npm run startProd"  
+  web: "node index.js $PORT"  
