@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node -r dotenv/config dist dotenv_config_path=\"../.env\"",
-    "start:prod": "node -r dotenv/config ./ dotenv_config_path=\".env.development\"",
+    "startProd": "node -r dotenv/config ./ dotenv_config_path=\".env.development\"",
     "start:debugger": "node inspect -r dotenv/config dist dotenv_config_path=\"../.env\"",
     "build": "tsc",
     "dev": "tsc --watch & nodemon -r dotenv/config dist dotenv_config_path=\"../.env\"",

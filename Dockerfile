@@ -81,4 +81,4 @@ RUN cd ./web && npm install && cd ..
 EXPOSE 8001
 # CMD ["npm", "run", "dev"]
 # CMD npm run start:prod
-CMD npm run startProd
+CMD npm run start
