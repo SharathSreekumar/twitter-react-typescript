@@ -79,7 +79,9 @@ COPY --from=nodeBuilder /app/.env.development ./web
 RUN cd ./web && npm install && cd ..
 # RUN cd ./web 
 
-EXPOSE $PORT
+RUN echo ${APP_SERVER_PORT}
+
+EXPOSE ${APP_SERVER_PORT}
 # CMD ["npm", "run", "dev"]
 # CMD npm run start:prod
 CMD npm run start
