@@ -78,7 +78,7 @@ COPY --from=nodeBuilder /app/.env.development ./web
 RUN cd ./web && npm install && cd ..
 # RUN cd ./web 
 
-EXPOSE 8001
+EXPOSE 80
 # CMD ["npm", "run", "dev"]
 # CMD npm run start:prod
 CMD npm run start
