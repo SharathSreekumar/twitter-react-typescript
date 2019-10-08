@@ -4,7 +4,7 @@ import * as Raven from 'raven';
 
 import app from './App';
 
-const portEnv = process.argv[2] || process.env.APP_SERVER_PORT || 8000;
+const portEnv = process.env.PORT || process.argv[2] || process.env.APP_SERVER_PORT || 8000;
 
 app.use(express.static(path.join(__dirname, '/web')));
 app.use(Raven.errorHandler());
