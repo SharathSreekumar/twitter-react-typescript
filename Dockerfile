@@ -29,6 +29,7 @@ RUN npm config delete ca
 # COPY . /srv/app/server
 
 # RUN npm run dev
+RUN rm -rf ./dist
 RUN npm run build
 # RUN npm start
 
@@ -37,8 +38,8 @@ FROM node:8.7.0-alpine AS reactBuilder
 COPY --from=nodeBuilder /app/client ./
 # RUN ls
 RUN npm install
-# RUN rm -rf ./build
-# RUN npm run build
+RUN rm -rf ./build
+RUN npm run build
 
 # Final stage build, this will be the container
 # that we will deploy to production
