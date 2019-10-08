@@ -90,3 +90,9 @@ Now run the following commands:
 > heroku stack:set container --app <heroku-app-name>
 > heroku container:push server web --recursive --app <heroku-app-name>
 > heroku container:release server web
+
+
+If you are using another branch, please not that in order for the Heroku Build and deployment to work you need to push in master Branch.
+To do that,
+> git push heroku <your-local-branch-name>:master
+Reference: https://devcenter.heroku.com/articles/git#deploying-code
