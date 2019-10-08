@@ -10,7 +10,7 @@ WORKDIR /app/server
 
 # ENV APP_SERVER_HOST https://twitter-react-app.herokuapp.com
 # ENV APP_SERVER_HOST 0.0.0.0
-ENV APP_SERVER_PORT 8001
+ENV APP_SERVER_PORT 8080
 ENV NODE_ENV development
 
 ## Test Twitter Keys ##
@@ -49,7 +49,7 @@ FROM node:8.7.0-alpine
 RUN apk --no-cache add ca-certificates
 
 # ENV APP_SERVER_HOST server
-ENV APP_SERVER_PORT 8001
+ENV APP_SERVER_PORT 8080
 ENV NODE_ENV development
 
 ## Test Twitter Keys ##
@@ -78,7 +78,7 @@ COPY --from=nodeBuilder /app/.env.development ./web
 RUN cd ./web && npm install && cd ..
 # RUN cd ./web 
 
-EXPOSE 80
+EXPOSE 8080
 # CMD ["npm", "run", "dev"]
 # CMD npm run start:prod
 CMD npm run start
