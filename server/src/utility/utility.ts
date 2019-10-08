@@ -237,7 +237,7 @@ const getValueFromUrlQueryParam = (url:string = '', paramKeys:any = []) => {
         if(urlSplit.length > 1) {
             url = urlSplit[1];
             
-            paramKeys.forEach((keys:any) => {
+            paramKeys.forEach((keys: string) => {
                 if(url.indexOf(keys) >= 0) {
                     queryParamValues[keys] = url.split(`${keys}=`)[1].split('&')[0];
                 }

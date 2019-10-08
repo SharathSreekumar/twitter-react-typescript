@@ -1,23 +1,24 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "dist",
-    "module": "esnext",
-    "target": "es5",
-    "lib": ["es6", "dom"],
+    "baseUrl": "./",                          /* Base directory to resolve non-absolute module names. */
+    "outDir": "build/dist",                         /* Redirect output structure to the directory. */
+    "module": "esnext",                       /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "target": "es5",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
+    "lib": ["es6", "dom"],                    /* Specify library files to be included in the compilation. */
     "sourceMap": true,
     "allowJs": true,
-    "jsx": "react",
-    "moduleResolution": "node",
-    "rootDir": "src",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": false, // true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+    "jsx": "react",                           /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
+    "moduleResolution": "node",               /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    "rootDir": "src",                         /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    // "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,                /* Report error when not all code paths in function return a value. */
+    "noImplicitThis": true,                   /* Raise error on 'this' expressions with an implied 'any' type. */
+    "noImplicitAny": true,                    /* Raise error on expressions and declarations with an implied 'any' type. */
+    "strictNullChecks": false,                /* Enable strict null checks. */
+    // "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,                   /* Report errors on unused locals. */
   },
+  "include": ["src/**/*.ts"],
   "exclude": [
     "node_modules",
     "build",
@@ -26,5 +27,8 @@
     "webpack",
     "jest",
     "src/setupTests.ts"
+  ],
+  "types": [
+    "typePatches"
   ]
 }

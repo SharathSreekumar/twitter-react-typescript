@@ -3,6 +3,7 @@ FROM node:8.7.0-alpine AS nodeBuilder
 # Add all the files to ./app
 ADD . /app
 # RUN mkdir -p /app/server
+RUN chmod u+wx /app/server
 WORKDIR /app/server
 # COPY package.json /app/server
 # COPY package-lock.json /app/server
@@ -39,6 +40,7 @@ COPY --from=nodeBuilder /app/client ./
 # RUN ls
 RUN npm install
 RUN rm -rf ./build
+RUN mkdir build && chmod u+wx ./build
 RUN npm run build
 
 # Final stage build, this will be the container

@@ -17,8 +17,8 @@ const searchApi = (search = '', headers: any = {}, searchType = 'twitter_search'
     if(!search) {
         searchType = 'twitter_search';
     }
-    const params = {};
-    const { url, param_key } = getApiUrl(searchType);
+    const params: any = {};
+    const { url, param_key = '' } = getApiUrl(searchType);
 
     if(typeof param_key === 'string') {
         params[param_key] = capitalizeString(search);

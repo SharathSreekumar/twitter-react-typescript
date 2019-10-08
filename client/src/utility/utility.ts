@@ -33,8 +33,8 @@ const getCurrentTimeStamp = () => {
  * 
  * @param unOrderedData 
  */
-const sortObject = (unOrderedData: object) => {
-    const orderedData = {};
+const sortObject = (unOrderedData: any): any => {
+    const orderedData: any = {};
 
     Object.keys(unOrderedData).sort().forEach((key) => {
         orderedData[key] = unOrderedData[key];
@@ -48,7 +48,7 @@ const sortObject = (unOrderedData: object) => {
  * @param length 
  */
 const randomString = (length:number=6):string => {
-    let text = '';
+    let text: string = '';
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for(let i = 0; i < length; i++) {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -56,7 +56,7 @@ const randomString = (length:number=6):string => {
     return text;
 }
 
-const generateSignatureBaseString = (method: string = 'POST', url: string, oAuthKeys: object = {}) => {
+const generateSignatureBaseString = (method: string = 'POST', url: string, oAuthKeys: any = {}) => {
     oAuthKeys = sortObject(oAuthKeys);
 
     let baseString = method + '&' + percentEncode(url);
@@ -136,7 +136,7 @@ const requestOAuthAccessToken = (consumerKey:string, appSecret:string, accessTok
     });
 }
 
-const generateOAuthHeader = (url: string, method: string = 'GET', params: object = {}):any => {
+const generateOAuthHeader = (url: string, method: string = 'GET', params: any = {}):any => {
     const { 
         REACT_APP_TWITTER_API_ACCESS_TOKEN, 
         REACT_APP_TWITTER_API_ACCESS_TOKEN_SECRET,
@@ -191,7 +191,7 @@ const generateOAuthHeader = (url: string, method: string = 'GET', params: object
 /**
  * This function converts the key-value object to key=value URL search Param string
  */
-const paramSerialize = (params: object, questionMark: boolean = true):string => {
+const paramSerialize = (params: any, questionMark: boolean = true):string => {
     const keyValue:string[] = [];
 
     Object.keys(params).map((data: any) => {
@@ -204,7 +204,7 @@ const paramSerialize = (params: object, questionMark: boolean = true):string => 
 /**
  * This function returns respective API URL & Param_Key to be replaced
  */
- const getApiUrl = (searchType='twitter_search', headers:object = {}):any => {
+ const getApiUrl = (searchType='twitter_search', headers:any = {}):any => {
     switch(searchType) {
         case 'iso2_search':
             return {url: COUNTRY_ISO2_API_URL, param_key: ISO2_KEY};
@@ -259,14 +259,14 @@ const checkIfObjectIsNotEmpty = (data:object = {}) => {
 }
 
 const getValueFromUrlQueryParam = (url:string = '', paramKeys:any = []) => {
-    const queryParamValues = {};
+    const queryParamValues: any = {};
 
     if(url && url.length > 0) {
         const urlSplit = url.split('?');
         if(urlSplit.length > 1) {
             url = urlSplit[1];
             
-            paramKeys.forEach((keys:any) => {
+            paramKeys.forEach((keys: string) => {
                 if(url.indexOf(keys) >= 0) {
                     queryParamValues[keys] = url.split(`${keys}=`)[1].split('&')[0];
                 }
@@ -277,7 +277,7 @@ const getValueFromUrlQueryParam = (url:string = '', paramKeys:any = []) => {
     return queryParamValues;
 }
 
-const generateQueryParamUrlFromObject = (paramObject = {}) => {
+const generateQueryParamUrlFromObject = (paramObject: any = {}) => {
     let searchQuerySlug = '?';
     Object.keys(paramObject).forEach(value => {
         searchQuerySlug += value + '=' + paramObject[value];
