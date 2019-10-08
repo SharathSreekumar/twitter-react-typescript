@@ -50,7 +50,7 @@ RUN apk --no-cache add ca-certificates
 
 ENV APP_SERVER_HOST 0.0.0.0
 ARG PORT=8080
-ENV APP_SERVER_PORT PORT
+ENV APP_SERVER_PORT $PORT
 ENV NODE_ENV development
 
 ## Test Twitter Keys ##
